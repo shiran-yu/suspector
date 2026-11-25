@@ -13,7 +13,8 @@ TraceGuard is a free Atlassian Forge app built for Codegeist 2026 by Shiran Yu (
 2. Open a Jira project → **TraceGuard** in the project sidebar → **Load AI radiology sample (LungScout CT)**, or
    classify your own issues from the TraceGuard issue panel.
 3. Optional: Rovo chat → **TraceGuard Auditor**; MCP clients after an admin enables TraceGuard's tools in
-   admin.atlassian.com → Apps → Sites → your site → Connected apps → TraceGuard.
+   admin.atlassian.com → Apps → Sites → your site → Connected apps → TraceGuard. For your own agent (IDE, CI,
+   terminal), add the open-source skill [skills/traceguard-mcp/SKILL.md](skills/traceguard-mcp/SKILL.md) (MIT).
 
 ## Common questions
 - **My issues do not appear.** TraceGuard reads issues labelled `traceguard`, issues of a mapped type (User Need,
