@@ -26,9 +26,22 @@ TraceGuard is a free Atlassian Forge app built for Codegeist 2026 by Shiran Yu (
 - **No Confluence space to publish to.** The snapshot needs Confluence with at least one space; create one, then
   reload the list on the Readiness and snapshot tab.
 - **Does TraceGuard certify compliance?** No. It checks traceability against IEC 62304:2006+A1:2015 and
-  ISO 14971:2019 and supports your quality team; it is not a compliance determination.
+  ISO 14971:2019 and supports your quality team; it is not a conformity determination, and release decisions stay
+  with your qualified people.
 
 ## Uninstall
 Site admins: Jira → Apps → Manage apps → TraceGuard → Uninstall. See the privacy policy for what remains.
 
-Privacy policy: [PRIVACY.md](PRIVACY.md)
+## Disclaimer
+TraceGuard is a traceability and documentation aid for teams that build medical-device software. It is not a
+medical device and is not intended for diagnosis, treatment or any clinical decision. It does not process patient
+data. Readiness scores, gaps and findings are indicators for qualified people to review. They are not a
+determination of conformity with IEC 62304, ISO 14971, ISO 13485, 21 CFR Part 820 or any other standard or
+regulation, and not regulatory or legal advice. Clause numbers refer to IEC 62304:2006+A1:2015 and ISO 14971:2019;
+standard text is not reproduced, so use your licensed copies. FDA guidance is summarised in our own words; guidance
+is non-binding, so check the current version on fda.gov. If you use this software in your quality management
+system, validate it for your intended use (ISO 13485:2016 clause 4.1.6; FDA Computer Software Assurance guidance).
+LungScout CT and QuantMap are fictional products and all data shown is synthetic. Not affiliated with or endorsed by
+IEC, ISO, FDA, MHRA, Atlassian, GitHub or Anthropic.
+
+Privacy policy: [PRIVACY.md](PRIVACY.md) · Terms of use: [TERMS.md](TERMS.md)
