@@ -1,6 +1,6 @@
 # Suspector privacy policy
 
-_Last updated: 2026-11-25. Vendor: Shiran Yu (independent developer). Contact: https://github.com/shiran-yu/suspector/issues._
+_Last updated: 2026-11-26. Vendor: Shiran Yu (independent developer). Contact: https://github.com/shiran-yu/suspector/issues._
 
 Suspector is an Atlassian Forge app for Jira and Confluence that checks design-control traceability for
 medical-device software (IEC 62304, ISO 14971, FDA PCCP). It runs entirely on Atlassian's Forge platform
@@ -8,15 +8,23 @@ medical-device software (IEC 62304, ISO 14971, FDA PCCP). It runs entirely on At
 its own.
 
 ## What Suspector reads
-- **Jira**, in the project you open it in: issue summaries, issue types, labels, issue links and Suspector's own
-  issue property (`traceguard`).
-- **Confluence**: the space you name when you publish a snapshot.
+- **Jira**, in the project you open it in: issue summaries, issue types, statuses, labels, issue links, the
+  project's fix versions, Suspector's own issue property (`traceguard`), and whether you can administer the
+  project (checked before the software safety class is changed).
+- **Jira, site-wide change events**: when the summary or description of any issue on the site is edited, Jira
+  tells Suspector, which reads that issue's type, labels and `traceguard` property to see whether it is a
+  requirement or a risk control.
+- **Confluence**: the keys and names of the spaces you can see (for the snapshot space picker) and the space you
+  choose when you publish a snapshot.
 - **Teamwork Graph** (read only): development activity linked to traced Jira issues — pull-request titles and
   status, commit IDs and messages, build and deployment names and states, their times and URLs. This is used
   in memory to decide which verifications are out of date. Only the URL of each pull request or deployment and the
   time Suspector first saw it are kept in Forge storage (a merged pull request's time can move with later edits).
 
-## What Suspector writes, and only when you or an agent you instruct asks it to
+## What Suspector writes
+Only when you or an agent you instruct asks it to, except the change time in the first bullet.
+- **Jira, automatically**: when the summary or description of a requirement or risk control is edited, the time of
+  that edit in the issue's `traceguard` property, so the tests that verified the old text show as suspect.
 - **Jira**: the `traceguard` issue property (item kind, test results and times, risk estimates, model versions,
   review times), labels (`traceguard`, `tg-<kind>`, `traceguard-sample`), issue links, new issues (sample data or
   trace items you create) and short audit comments ("Suspector: result recorded: PASS."). Jira attributes each
@@ -53,4 +61,5 @@ you delete them.
 Suspector does not sell, share or transfer data to anyone. The vendor has no access to your site's data.
 
 ## Changes
-Changes to this policy are published at this address with a new date. Terms of use: [terms.md](terms.md).
+Changes to this policy are published at this address with a new date. Terms of use:
+https://github.com/shiran-yu/suspector/blob/main/TERMS.md

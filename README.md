@@ -17,8 +17,9 @@ Suspector is a free Atlassian Forge app built for Codegeist 2026 by Shiran Yu (i
    terminal), add the open-source skill [skills/suspector-mcp/SKILL.md](skills/suspector-mcp/SKILL.md) (MIT).
 
 ## Common questions
-- **My issues do not appear.** Suspector reads issues labelled `traceguard`, issues of a mapped type (User Need,
-  Requirement, Hazard, Risk Control, Test, Test Case, SOUP, AI Model), or work items classified with Suspector in their details column.
+- **My issues do not appear.** Suspector reads issues labelled `traceguard`, issues of a mapped type (for example
+  User Need, Stakeholder Need, Requirement, System Requirement, Hazard, Risk Control, Test Case, Verification, SOUP,
+  AI Model), or work items classified with Suspector in their details column.
 - **No merged pull requests are shown.** Connect GitHub or Bitbucket to the site (e.g. GitHub for Atlassian);
   Suspector reads that activity through the Teamwork Graph.
 - **The Suspector Audit Prep agent is missing in Rovo.** Rovo must be active on the site (Rovo chat in the top bar). Without it, the
@@ -28,6 +29,15 @@ Suspector is a free Atlassian Forge app built for Codegeist 2026 by Shiran Yu (i
 - **Does Suspector certify compliance?** No. It checks traceability against IEC 62304:2006+A1:2015 and
   ISO 14971:2019 and supports your quality team; it is not a conformity determination, and release decisions stay
   with your qualified people.
+
+## Tested on a trace we did not write
+The Open PCA Pump System Requirements 1.0.0 (SAnToS Lab, Kansas State University, CC BY-SA 3.0:
+https://ovasicek.github.io/pca-pump-ec-artifacts/Open-PCA-Pump-Requirements.pdf) were imported into a Jira project
+by the document's own citations: 8 goals as Stakeholder Needs, 24 exception cases as Hazards (our mapping) and 143
+requirements as System Requirements, with plain Jira links. Suspector reported, among others: no requirement
+reaches goals G6 and G7 through the cases it cites; 69 of the 143 requirements reach no goal (45 cite nothing, 14
+only a standard or a paper, 6 "many EC", 2 the placeholder "FDA ??", 1 a case whose number and section disagree).
+The document has no tests or risk estimates, so readiness is 10%; this is not a judgement of the document.
 
 ## Uninstall
 Site admins: Jira → Apps → Manage apps → Suspector → Uninstall. See the privacy policy for what remains.

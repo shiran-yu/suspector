@@ -1,6 +1,6 @@
 # Suspector terms of use
 
-_Last updated: 2026-11-25. Provider: Shiran Yu (independent developer). Contact: https://github.com/shiran-yu/suspector/issues._
+_Last updated: 2026-11-26. Provider: Shiran Yu (independent developer). Contact: https://github.com/shiran-yu/suspector/issues._
 
 By installing or using Suspector you agree to these terms. If you do not agree, do not install or use it.
 
@@ -20,7 +20,7 @@ If you use Suspector in your quality management system, validate it for your int
 
 ## Your content and data
 Your Jira and Confluence content stays yours and stays in your Atlassian site. What Suspector reads, writes and
-stores is described in the [privacy policy](privacy.md).
+stores is described in the privacy policy: https://github.com/shiran-yu/suspector/blob/main/PRIVACY.md
 
 ## No warranty
 Suspector is provided free of charge, "as is" and "as available", without warranties of any kind, express or
