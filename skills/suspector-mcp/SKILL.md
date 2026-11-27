@@ -33,13 +33,13 @@ decision these tools record.
 | `get-change-impact` | before a change: tests to re-run, hazards to re-assess, items to review | `issueKeys` (comma-separated) |
 | `register-model-version` | record new trained weights and whether the change is within the authorised PCCP | `modelKey`, `version`, `pccp` (`within` or `outside`) |
 | `record-test-result` | record pass, fail or not-run, with the model version the run used | `testKey`, `result`, `testedVersion` |
-| `review-suspect-test` | close a suspect test without a re-run, with a written impact rationale (IEC 62304 §8.2.3) | `testKey`, `rationale` |
+| `review-suspect-test` | close a suspect test without a re-run, with a written impact rationale (IEC 62304 §8.2.3); refused when the test's development activity could not be read in full | `testKey`, `rationale` |
 | `create-trace-item` | add a missing need, requirement, hazard, control, test, SOUP item or model, linked | `kind`, `summary`, `linkTo`, `description` |
 | `set-hazard-risk` | set initial or residual severity × probability (1–5) | `hazardKey`, `severity`, `probability`, `residual` |
-| `set-soup-status` | record a SOUP item's version and that its published anomaly list was reviewed; a new version needs a fresh review and re-opens the tests of requirements that use it (IEC 62304 §7.1.3, §8.1.2) | `soupKey`, `version`, `anomaliesReviewed` |
+| `set-soup-status` | record a SOUP item's version and that its published anomaly list was reviewed; an upgrade from a recorded version needs a fresh review and re-opens the tests of requirements that use it (IEC 62304 §7.1.3, §8.1.2) | `soupKey`, `version`, `anomaliesReviewed` |
 | `publish-trace-report` | publish a dated snapshot page to a Confluence space | `projectKey`, `spaceKey` |
 | `check-release` | READY or NOT READY for a Jira fix version: what blocks its changes, what blocks the rest of the software system, and what does not block (minor gaps, planned work nothing implements yet) (IEC 62304 §5.8) | `projectKey`, `version` |
-| `export-trace-matrix` | the trace matrix as CSV: each requirement, risk control and AI model with its tests, results and whether each result is current | `projectKey` |
+| `export-trace-matrix` | the trace matrix as CSV: each requirement, risk control and AI model with its tests, results and whether each result is current (`unknown`, with an `evidenceWarning`, when development activity could not be read in full) | `projectKey` |
 
 ## After a model retrain (the main workflow)
 
@@ -57,7 +57,8 @@ decision these tools record.
   will re-open, so the reviewer sees it before the merge.
 - **A test is suspect after a change that cannot affect it** (a typo fix, a refactor with identical outputs):
   `review-suspect-test` with a rationale that names what changed and why the verified behaviour is the same. Ask the
-  user to confirm the rationale first.
+  user to confirm the rationale first. If the review is refused because development activity could not be read in
+  full, re-run the test instead.
 - **Before an audit:** `get-audit-readiness`, then `list-gaps` with `severity: critical`; explain each gap with its
   clause and propose the smallest fix. `export-trace-matrix` gives the matrix as CSV for the design history file.
 - **Before a release:** `check-release` with the fix version's name. READY needs every work item in the version done

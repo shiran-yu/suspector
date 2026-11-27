@@ -2,6 +2,8 @@
 
 Suspector is a free Atlassian Forge app built for Codegeist 2026 by Shiran Yu (independent developer).
 
+![A merged pull request re-opens the tests that relied on it: Suspector's panel on an AI model work item (fictional sample project, synthetic data)](img/suspect-tests.png)
+
 ## Get help
 - **Questions and bugs:** open an issue at https://github.com/shiran-yu/suspector/issues. Please include your site URL, the Jira project key, the issue key
   if one issue is affected, and what you expected to see.
@@ -30,14 +32,19 @@ Suspector is a free Atlassian Forge app built for Codegeist 2026 by Shiran Yu (i
   ISO 14971:2019 and supports your quality team; it is not a conformity determination, and release decisions stay
   with your qualified people.
 
-## Tested on a trace we did not write
-The Open PCA Pump System Requirements 1.0.0 (SAnToS Lab, Kansas State University, CC BY-SA 3.0:
-https://ovasicek.github.io/pca-pump-ec-artifacts/Open-PCA-Pump-Requirements.pdf) were imported into a Jira project
-by the document's own citations: 8 goals as Stakeholder Needs, 24 exception cases as Hazards (our mapping) and 143
-requirements as System Requirements, with plain Jira links. Suspector reported, among others: no requirement
-reaches goals G6 and G7 through the cases it cites; 69 of the 143 requirements reach no goal (45 cite nothing, 14
-only a standard or a paper, 6 "many EC", 2 the placeholder "FDA ??", 1 a case whose number and section disagree).
-The document has no tests or risk estimates, so readiness is 10%; this is not a judgement of the document.
+## Tested on requirements we did not write
+The Open Patient-Controlled Analgesia Infusion Pump System Requirements 1.0.0 (SAnToS TR 2018-4-1; SAnToS Lab,
+Kansas State University; first draft by Brian R. Larson), simulated requirements for a mock infusion pump published
+for research and standards development, are licensed CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/);
+source: http://pub.santoslab.org/open-pca-pump/artifacts/Open-PCA-Pump-Requirements.pdf. We imported them into a Jira
+project by the document's own citations: 8 goals as Stakeholder Needs, 24 exception cases as Hazards (our mapping)
+and 143 requirements as System Requirements, with plain Jira links. The findings concern citations as written, not
+content. Suspector reported, among others: no requirement reaches goals G6 and G7 (the authentication and
+confidentiality requirements R8.1.0 and R8.2.0 cite use case UC1 or nothing); 70 of the 143 requirements reach no
+goal (43 cite nothing, 23 a standard, a paper, "many EC" or "all UC and EC", which our import does not link, 2 the
+placeholder "FDA ??", 1 use case UC7, which lists no goals, 1 "EC23b §4.2.22", whose section is EC22's). Readiness is
+10% because only traced goals (5 of 8) can score without tests or risk estimates; this is not a judgement of the
+document. Adapted by us; not affiliated with or endorsed by its authors or Kansas State University.
 
 ## Uninstall
 Site admins: Jira → Apps → Manage apps → Suspector → Uninstall. See the privacy policy for what remains.
@@ -51,7 +58,7 @@ regulation, and not regulatory or legal advice. Clause numbers refer to IEC 6230
 standard text is not reproduced, so use your licensed copies. FDA guidance is summarised in our own words; guidance
 is non-binding, so check the current version on fda.gov. If you use this software in your quality management
 system, validate it for your intended use (ISO 13485:2016 clause 4.1.6; FDA Computer Software Assurance guidance).
-LungScout CT and QuantMap are fictional products and all data shown is synthetic. Not affiliated with or endorsed by
-IEC, ISO, FDA, MHRA, Atlassian, GitHub or Anthropic.
+LungScout CT and QuantMap are fictional products with synthetic data; the Open PCA requirements are credited above.
+Not affiliated with or endorsed by IEC, ISO, FDA, MHRA, Kansas State University, Atlassian, GitHub or Anthropic.
 
 Privacy policy: [PRIVACY.md](PRIVACY.md) · Terms of use: [TERMS.md](TERMS.md)

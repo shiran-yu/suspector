@@ -12,8 +12,9 @@ its own.
   project's fix versions, Suspector's own issue property (`traceguard`), and whether you can administer the
   project (checked before the software safety class is changed).
 - **Jira, site-wide change events**: when the summary or description of any issue on the site is edited, Jira
-  tells Suspector, which reads that issue's type, labels and `traceguard` property to see whether it is a
-  requirement or a risk control.
+  tells Suspector, which fetches that issue (summary, type, labels, links and `traceguard` property) to see
+  whether it is a requirement or a risk control; if it is, the edit time goes into that issue's `traceguard`
+  property, and nothing else from it is kept.
 - **Confluence**: the keys and names of the spaces you can see (for the snapshot space picker) and the space you
   choose when you publish a snapshot.
 - **Teamwork Graph** (read only): development activity linked to traced Jira issues — pull-request titles and
