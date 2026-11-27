@@ -7,7 +7,7 @@ license: MIT
 # Suspector over MCP
 
 Suspector is an Atlassian Forge app that reads a Jira project as a design-control trace: user needs, requirements,
-hazards, risk controls, tests, SOUP and AI models. Its MCP server lets any MCP client (an IDE agent, a CI job, a
+hazards, risk controls, tests, SOUP and AI models. Its MCP server lets an MCP client you sign in to (an IDE agent, a
 terminal assistant) ask the same questions and record the same results as the Jira pages and the Rovo agent.
 
 Suspector checks traceability; it is not a compliance determination. A person in the quality team owns every
@@ -38,7 +38,7 @@ decision these tools record.
 | `set-hazard-risk` | set initial or residual severity × probability (1–5) | `hazardKey`, `severity`, `probability`, `residual` |
 | `set-soup-status` | record a SOUP item's version and that its published anomaly list was reviewed; an upgrade from a recorded version needs a fresh review and re-opens the tests of requirements that use it (IEC 62304 §7.1.3, §8.1.2) | `soupKey`, `version`, `anomaliesReviewed` |
 | `publish-trace-report` | publish a dated snapshot page to a Confluence space | `projectKey`, `spaceKey` |
-| `check-release` | READY or NOT READY for a Jira fix version: what blocks its changes, what blocks the rest of the software system, and what does not block (minor gaps, planned work nothing implements yet) (IEC 62304 §5.8) | `projectKey`, `version` |
+| `check-release` | READY or NOT READY for a Jira fix version: what blocks its changes, what blocks the rest of the software system, and what does not block (minor gaps, planned work nothing implements yet), and open Bugs outside the version as known residual anomalies (`knownAnomalies`, §5.8.2) (IEC 62304 §5.8) | `projectKey`, `version` |
 | `export-trace-matrix` | the trace matrix as CSV: each requirement, risk control and AI model with its tests, results and whether each result is current (`unknown`, with an `evidenceWarning`, when development activity could not be read in full) | `projectKey` |
 
 ## After a model retrain (the main workflow)

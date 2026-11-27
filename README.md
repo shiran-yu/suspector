@@ -4,6 +4,22 @@ Suspector is a free Atlassian Forge app built for Codegeist 2026 by Shiran Yu (i
 
 ![A merged pull request re-opens the tests that relied on it: Suspector's panel on an AI model work item (fictional sample project, synthetic data)](img/suspect-tests.png)
 
+## What it is, for whom, why it matters
+Teams that build medical-device software keep their design-control trace (needs, requirements, hazards, risk
+controls, tests, AI models, SOUP) in Jira. When code, a model or a requirement changes, the tests that verified the
+old version stop proving anything, and today someone finds out by spreadsheet before an audit. Suspector reads the
+Jira project as an IEC 62304 / ISO 14971 trace, re-opens exactly the tests a change invalidated (requirement edits,
+merged pull requests, new AI model weights, SOUP upgrades), says why, and checks a release before it ships.
+
+## Built for Codegeist 2026 (Apps for Specialized Industries)
+| Bonus prize | Manifest module | What it does | Where to see it |
+|---|---|---|---|
+| Best Agents | `rovo:agent` `suspector-audit-prep` + `rovo:skill` `iec62304-gap-review`, 13 `action`s | Answers from the trace (what to re-run, which hazard to reassess); asks the team whether a model change is within the FDA PCCP instead of guessing; drafts and links a missing test | Video 1:20–1:58; Rovo chat → Suspector Audit Prep |
+| Best app with Atlassian MCP | `rovo:mcp` (the same 13 actions) | A coding agent (e.g. Claude Code, signed in once with OAuth) that runs the retraining records test results against a model version and asks what a change would re-open | Video 1:58–2:25; [MCP skill](skills/suspector-mcp/SKILL.md) |
+| Best Teamwork Graph integration | Teamwork Graph API (pull requests, commits, builds, deployments per work item) | A merged pull request or deployment on a traced item re-opens the tests that verified it, naming the change | Video 0:54–1:20; the Suspector project page's "re-opened by changes" call-out |
+
+Runs on Atlassian: Forge functions, KVS and Jira/Confluence APIs only; no servers of our own.
+
 ## Get help
 - **Questions and bugs:** open an issue at https://github.com/shiran-yu/suspector/issues. Please include your site URL, the Jira project key, the issue key
   if one issue is affected, and what you expected to see.
@@ -15,11 +31,11 @@ Suspector is a free Atlassian Forge app built for Codegeist 2026 by Shiran Yu (i
 2. Open a Jira project → the **Suspector** tab → **Load AI radiology sample (LungScout CT)**, or classify your
    own work items with **Suspector** in each work item's details column (right-hand side).
 3. Optional: Rovo chat → **Suspector Audit Prep**; MCP clients after an admin enables Suspector's tools in
-   admin.atlassian.com → Apps → Sites → your site → Connected apps → Suspector. For your own agent (IDE, CI,
-   terminal), add the open-source skill [skills/suspector-mcp/SKILL.md](skills/suspector-mcp/SKILL.md) (MIT).
+   admin.atlassian.com → Apps → Sites → your site → Connected apps → Suspector. For your own agent (IDE or
+   terminal; Forge MCP tools need a one-time OAuth sign-in, so no unattended CI job), add the open-source skill [skills/suspector-mcp/SKILL.md](skills/suspector-mcp/SKILL.md) (MIT).
 
 ## Common questions
-- **My issues do not appear.** Suspector reads issues labelled `traceguard`, issues of a mapped type (for example
+- **My issues do not appear.** Suspector reads issues labelled `suspector` or `suspector-<kind>` (for example `suspector-requirement`), issues of a mapped type (for example
   User Need, Stakeholder Need, Requirement, System Requirement, Hazard, Risk Control, Test Case, Verification, SOUP,
   AI Model), or work items classified with Suspector in their details column.
 - **No merged pull requests are shown.** Connect GitHub or Bitbucket to the site (e.g. GitHub for Atlassian);
@@ -45,6 +61,21 @@ goal (43 cite nothing, 23 a standard, a paper, "many EC" or "all UC and EC", whi
 placeholder "FDA ??", 1 use case UC7, which lists no goals, 1 "EC23b §4.2.22", whose section is EC22's). Readiness is
 10% because only traced goals (5 of 8) can score without tests or risk estimates; this is not a judgement of the
 document. Adapted by us; not affiliated with or endorsed by its authors or Kansas State University.
+
+## Limits
+- One Jira project per analysis; up to 2,000 traced issues per load. Suspector says when a project or a fix version
+  reaches that limit, and a release check is then not READY.
+- Development activity (Teamwork Graph) is read for up to 100 traced items per analysis (in a release check the
+  release's scope first, then AI models, linked work items, requirements, controls, SOUP) and up to 25 artifacts per
+  item. The dashboard says when either cap applied. A release check withholds READY if its own scope was not fully
+  read, if Teamwork Graph returned an error, or if the project's issue types could not be read. When activity was not
+  read in full, the trace-matrix CSV marks passing, non-suspect results `unknown` instead of `yes` in its Current column.
+- The release check reads up to 100 open Bugs (issue type Bug) and lists those outside the fix version as known
+  residual anomalies (IEC 62304 §5.8.2), not blocking; it cannot tell whether each was evaluated (§5.8.3). A project
+  without a Bug issue type gets a note instead.
+- Teamwork Graph has no merge time: a pull request's change time is the last-update time Suspector first read for it.
+- On large projects Teamwork Graph can rate-limit a second read within about a minute; Suspector then says how many
+  items it checked (seen on a 798-issue test project).
 
 ## Uninstall
 Site admins: Jira → Apps → Manage apps → Suspector → Uninstall. See the privacy policy for what remains.

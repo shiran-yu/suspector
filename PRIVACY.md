@@ -27,7 +27,8 @@ Only when you or an agent you instruct asks it to, except the change time in the
 - **Jira, automatically**: when the summary or description of a requirement or risk control is edited, the time of
   that edit in the issue's `traceguard` property, so the tests that verified the old text show as suspect.
 - **Jira**: the `traceguard` issue property (item kind, test results and times, risk estimates, model versions,
-  review times), labels (`traceguard`, `tg-<kind>`, `traceguard-sample`), issue links, new issues (sample data or
+  review times), labels (`suspector`, `suspector-<kind>`, `suspector-sample`; issues labelled before the rename keep `traceguard`,
+  `tg-<kind>` or `traceguard-sample`, which are still read), issue links, new issues (sample data or
   trace items you create) and short audit comments ("Suspector: result recorded: PASS."). Jira attributes each
   comment to the person who made the change, as it does for any comment.
 - **Confluence**: snapshot pages you publish.
